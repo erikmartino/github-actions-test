@@ -1,0 +1,10 @@
+name: Auto approve
+on:
+  pull_request_target
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@5d04a5ca6da9aeb8ca9f31a5239b96fc3e003029  # v2.1.0
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
