@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Create PR
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch: {}
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  create-pr:
+    name: Create PR
+      
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+#       - name: Create branch
+#         run: git checkout -b action/created-branch
+      - name: Do a change
+        run: date >>date.txt
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672 # v3.14.0
+        with:
+          commit-message: "Add date"
+          branch: action/created-branch
+          delete-branch: true
+          title: "Add date"
+          body: "Created by create-pr action"
+          labels: "ci,dev,autoapprove,automerge"
